@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Business Manager</title>
+    <link rel="stylesheet" href="styles/popup.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-top">
+                <h1>Facebook Business Manager</h1>
+                <button id="settingsBtn" class="settings-btn" title="Settings">⚙️</button>
+            </div>
+            <div class="status" id="status">Loading...</div>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="pages">📄 Pages</button>
+            <button class="tab-btn" data-tab="groups">👥 Groups</button>
+            <button class="tab-btn" data-tab="posts">📝 Posts</button>
+            <button class="tab-btn" data-tab="messages">💬 Messages</button>
+        </nav>
+
+        <!-- PAGES TAB -->
+        <div class="tab-content active" id="pages-tab">
+            <div class="section-header">
+                <h2>Managed Pages</h2>
+                <button id="refreshPages" class="btn-secondary">🔄 Refresh</button>
+            </div>
+            <div id="pagesList" class="items-list"></div>
+            <div class="form-section">
+                <h3>Create New Post</h3>
+                <input type="text" id="postTitle" placeholder="Post Title" />
+                <textarea id="postContent" placeholder="Post Content"></textarea>
+                <select id="pageSelect"></select>
+                <input type="datetime-local" id="scheduleTime" />
+                <button id="createPost" class="btn-primary">Post</button>
+            </div>
+        </div>
+
+        <!-- GROUPS TAB -->
+        <div class="tab-content" id="groups-tab">
+            <div class="section-header">
+                <h2>Your Groups</h2>
+                <button id="refreshGroups" class="btn-secondary">🔄 Refresh</button>
+            </div>
+            <div id="groupsList" class="items-list"></div>
+        </div>
+
+        <!-- POSTS TAB -->
+        <div class="tab-content" id="posts-tab">
+            <div class="section-header">
+                <h2>Recent Posts</h2>
+                <button id="refreshPosts" class="btn-secondary">🔄 Refresh</button>
+            </div>
+            <div id="postsList" class="items-list"></div>
+        </div>
+
+        <!-- MESSAGES TAB -->
+        <div class="tab-content" id="messages-tab">
+            <div class="section-header">
+                <h2>Conversations</h2>
+                <button id="refreshMessages" class="btn-secondary">🔄 Refresh</button>
+            </div>
+            <div id="messagesList" class="items-list"></div>
+            <div class="form-section">
+                <h3>Send Message</h3>
+                <input type="text" id="recipientId" placeholder="Recipient ID" />
+                <textarea id="messageContent" placeholder="Message Content"></textarea>
+                <button id="sendMessage" class="btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils/storage.js"></script>
+    <script src="utils/api.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html>
