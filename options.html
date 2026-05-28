@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Business Manager - Settings</title>
+    <link rel="stylesheet" href="styles/options.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚙️ Settings</h1>
+            <p>Configure your Facebook API credentials and extension features</p>
+        </header>
+
+        <!-- API CREDENTIALS SECTION -->
+        <section class="settings-section">
+            <h2>Facebook API Credentials</h2>
+            <p class="help-text">Get your credentials from <a href="https://developers.facebook.com" target="_blank">developers.facebook.com</a></p>
+            
+            <div class="form-group">
+                <label for="appId">App ID *</label>
+                <input type="text" id="appId" placeholder="Your Facebook App ID">
+                <small>Found in App Settings → Basic</small>
+            </div>
+
+            <div class="form-group">
+                <label for="appSecret">App Secret *</label>
+                <input type="password" id="appSecret" placeholder="Your Facebook App Secret">
+                <small>Found in App Settings → Basic (keep confidential)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="accessToken">Access Token *</label>
+                <input type="password" id="accessToken" placeholder="Your Facebook Access Token">
+                <small>Generate from Tools → Graph API Explorer</small>
+            </div>
+
+            <div class="form-group">
+                <label for="apiVersion">API Version</label>
+                <select id="apiVersion">
+                    <option value="v18.0">v18.0 (Latest)</option>
+                    <option value="v17.0">v17.0</option>
+                    <option value="v16.0">v16.0</option>
+                    <option value="v15.0">v15.0</option>
+                </select>
+                <small>Default is latest stable version</small>
+            </div>
+
+            <button id="testConnection" class="btn-test">🧪 Test Connection</button>
+            <div id="connectionResult" class="result-message"></div>
+        </section>
+
+        <!-- FEATURES CONFIGURATION -->
+        <section class="settings-section">
+            <h2>Feature Configuration</h2>
+            
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enablePages" class="feature-toggle">
+                    <label for="enablePages">📄 Pages Management</label>
+                </div>
+                <p>Manage Facebook pages, view metrics, and create posts</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableGroups" class="feature-toggle">
+                    <label for="enableGroups">👥 Groups Management</label>
+                </div>
+                <p>View and manage your groups</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enablePosts" class="feature-toggle">
+                    <label for="enablePosts">📝 Posts Management</label>
+                </div>
+                <p>Create, edit, schedule, and delete posts</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableMessages" class="feature-toggle">
+                    <label for="enableMessages">💬 Messages Management</label>
+                </div>
+                <p>Send and manage messages</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableNotifications" class="feature-toggle">
+                    <label for="enableNotifications">🔔 Notifications</label>
+                </div>
+                <p>Receive browser notifications for new messages</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableScheduling" class="feature-toggle">
+                    <label for="enableScheduling">⏰ Post Scheduling</label>
+                </div>
+                <p>Schedule posts to be published at specific times</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableAutoRefresh" class="feature-toggle">
+                    <label for="enableAutoRefresh">🔄 Auto-Refresh</label>
+                </div>
+                <div class="feature-options">
+                    <label for="refreshInterval">Refresh Interval (minutes):</label>
+                    <select id="refreshInterval">
+                        <option value="1">1 minute</option>
+                        <option value="5">5 minutes</option>
+                        <option value="10">10 minutes (default)</option>
+                        <option value="30">30 minutes</option>
+                        <option value="60">1 hour</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANCED OPTIONS -->
+        <section class="settings-section">
+            <h2>Advanced Options</h2>
+            
+            <div class="feature">
+                <div class="feature-header">
+                    <input type="checkbox" id="enableDebug" class="feature-toggle">
+                    <label for="enableDebug">🐛 Debug Mode</label>
+                </div>
+                <p>Log detailed information to browser console for troubleshooting</p>
+            </div>
+
+            <div class="form-group">
+                <label for="cacheDuration">Cache Duration (minutes)</label>
+                <input type="number" id="cacheDuration" min="0" max="1440" placeholder="60">
+                <small>How long to cache API responses (0 = no cache)</small>
+            </div>
+
+            <div class="form-group">
+                <label for="requestTimeout">Request Timeout (seconds)</label>
+                <input type="number" id="requestTimeout" min="5" max="120" placeholder="30">
+                <small>How long to wait for API responses</small>
+            </div>
+        </section>
+
+        <!-- DATA MANAGEMENT -->
+        <section class="settings-section danger-zone">
+            <h2>Data Management</h2>
+            
+            <button id="exportSettings" class="btn-secondary">📥 Export Settings</button>
+            <button id="importSettings" class="btn-secondary">📤 Import Settings</button>
+            <input type="file" id="settingsFile" accept=".json" style="display:none">
+            
+            <button id="clearCache" class="btn-secondary">🗑️ Clear Cache</button>
+            <button id="resetAll" class="btn-danger">⚠️ Reset All Settings</button>
+        </section>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+            <button id="saveSettings" class="btn-primary">💾 Save Settings</button>
+            <button id="cancelSettings" class="btn-secondary">Cancel</button>
+        </div>
+
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script src="utils/storage.js"></script>
+    <script src="utils/api.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

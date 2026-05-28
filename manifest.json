@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Facebook Business Manager",
+  "description": "Comprehensive Facebook Pages, Groups, Posts, and Messages management tool using official Graph API",
+  "version": "1.0.0",
+  "author": "Facebook Business Manager Contributors",
+  "icons": {
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://graph.facebook.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Facebook Business Manager",
+    "default_icon": "images/icon-48.png"
+  },
+  "options_page": "options.html",
+  "minimum_chrome_version": "88"
+}
